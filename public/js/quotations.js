@@ -178,7 +178,7 @@ myApp.controller('getQuotationsAndComments', ['$scope', '$http', '$element', '$f
 
             var anchorTime;
             if ($scope.comments.length>0) {
-                anchorTime = $scope.comments[$scope.comments.length-1].time;
+                anchorTime = $scope.comments[$scope.comments.length-1].time*1000;
             } else {
                 anchorTime = moment().format('x');
             }
