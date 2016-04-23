@@ -33,7 +33,7 @@ myApp.controller('getQuotationsAndComments', ['$scope', '$http', '$element', '$f
         }
         var i = 0, len = comments.length;
         while (i < len) {
-            comments[i].time = moment(comments[i].time*1000).format('YYYY-MM-DD hh:mm:ss');
+            comments[i].displayTime = moment(comments[i].time*1000).format('YYYY-MM-DD hh:mm:ss');
             i++;
         }
         if (isNewQuotation) {
@@ -84,6 +84,10 @@ myApp.controller('getQuotationsAndComments', ['$scope', '$http', '$element', '$f
             if (data && data.quotation) {
                 addQuotations([data.quotation], true);
                 $scope.inputQuotation = "";
+                $scope.getComments(data.quotation);
+                var commentNode = document.getElementById('content_right');
+                angular.element(commentNode).css('marginTop', 0 + 'px');
+
             }
         });
     };
@@ -115,6 +119,7 @@ myApp.controller('getQuotationsAndComments', ['$scope', '$http', '$element', '$f
             if (data && data.comment) {
                 addComments([data.comment], false, true);
                 $scope.inputComment = "";
+                $scope.commentTip = "";
             }
         });
     };

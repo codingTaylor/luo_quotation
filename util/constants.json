@@ -14,8 +14,8 @@
   "redis_zset_score": {
     "max": 2147483647
   },
-  "quotation_limit": 1,
-  "comment_limit": 5,
+  "quotation_limit": 10,
+  "comment_limit": 6,
   "elastic_server": {
     "development": "localhost:9200",
     "product": "localhost:9200"

@@ -7,11 +7,9 @@ var async = require('async');
 var constants = require('../util/constants.json');
 
 function createQuotation (quotation, date, onCompleted) {
-    console.log(quotation, date);
     var key = util.getkeyForQuotation();
     var redisClient = redis.initQuotationsClient();
     var timeStamp = util.getUnixTimeStamp(date);
-    console.log(timeStamp);
     redisClient.multi()
         .hmset('quotation:'+key, 'content', quotation, 'entry_time', timeStamp,
         constants.count_type.wrong_count, 0, constants.count_type.right_count, 0)
@@ -23,10 +21,10 @@ function createQuotation (quotation, date, onCompleted) {
             var result = {
                 key: key,
                 content: quotation,
-                entry_time: timeStamp
+                entry_time: timeStamp,
+                wrong_count: 0,
+                right_count: 0
             };
-            console.log(replyies);
-            console.log(result);
             onCompleted(null ,result);
         });
 }
@@ -39,15 +37,12 @@ function createComment (quotationKey, text, date, onCompleted) {
         if (err) {
             return onCompleted(err, null);
         }
-        console.log('no quotation key?');
-        console.log(reply);
         if (reply) {
             var commentKey = util.getkeyForComment();
             redisClient.multi()
                 .hmset('comment:'+commentKey, 'content', text, 'time', timeStamp)
                 .zadd(key, timeStamp, commentKey)
                 .exec(function (err, replies) {
-                    console.log(replies);
                     if (err) {
                         return onCompleted(err, null);
                     }
@@ -56,7 +51,6 @@ function createComment (quotationKey, text, date, onCompleted) {
                         content: text,
                         time: timeStamp
                     };
-                    console.log(result.time);
                     onCompleted(null, result);
                 });
         }
@@ -112,13 +106,11 @@ function getCommentByQuotationKey(quotationKey, anchorTime, limit, onCompleted) 
 
 function getQuotationWithOneComment (anchorTime, limit, onCompleted) {
     var args = ["quotations", anchorTime - 0.001, 0,  'limit', 0, limit];
-    console.log(args[1]);
     var redisClient = redis.initQuotationsClient();
     redisClient.zrevrangebyscore(args, function (err, quotationKeys) {
         if (err) {
             return onCompleted(err, null);
         }
-        console.log(quotationKeys);
         if (quotationKeys && quotationKeys.length>0) {
             var quotations = [];
             async.forEach(quotationKeys, function (quotationsKey, cb) {
