@@ -1,0 +1,36 @@
+{
+  "redis_database": {
+    "development": {
+      "host": "localhost",
+      "port": 6379,
+      "db": 1
+    },
+    "product": {
+      "host": "localhost",
+      "port": 6379,
+      "db": 2
+    }
+  },
+  "redis_zset_score": {
+    "max": 2147483647
+  },
+  "quotation_limit": 1,
+  "comment_limit": 5,
+  "elastic_server": {
+    "development": "localhost:9200",
+    "product": "localhost:9200"
+  },
+  "search_config":{
+    "search_min_len": 2,
+    "valid_character_reg": {
+      "chinese": "[\\u4e00-\\u9fa5]"
+    }
+  },
+  "result_200": {
+    "result": true
+  },
+  "count_type": {
+    "wrong_count":  "wrong_count",
+    "right_count": "right_count"
+  }
+}

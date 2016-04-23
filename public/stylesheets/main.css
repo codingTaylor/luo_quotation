@@ -1,0 +1,255 @@
+html {
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body {
+    background-color: #fff;
+    color: #626262;
+    padding-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: black;
+}
+
+a:hover {
+    color: gray;
+}
+
+img {
+    width: 100%;
+}
+#title, #command_region, #content, #img_region{
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    position:relative;
+}
+#img_region {
+    height: 110px;
+    overflow-y: hidden;
+}
+@media (min-width: 375px) and (max-width: 414px) {
+    #img_region {
+        height: 125px;
+    }
+}
+@media (min-width: 414px) and (max-width: 650px) {
+    #img_region {
+        height: 140px;
+    }
+}
+@media (min-width: 650px) and (max-width: 960px) {
+    #title, #command_region, #content, #img_region{
+        width: 650px;
+    }
+    #img_region {
+        height: 230px;
+    }
+}
+
+@media (min-width: 960px) {
+    #title, #command_region, #content, #img_region {
+        width: 960px;
+    }
+    #img_region {
+        height: 350px;
+    }
+}
+
+
+li {
+    list-style-type: none;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.clear_fix:after {
+    content:'';
+    display: block;
+    line-height: 0;
+    height: 0;
+    clear: both;
+    zoom: 1;
+}
+
+#command_region {
+    padding: 5px;
+}
+table {
+    width: 100%;
+}
+#quotation_input_region {
+    padding-right: 15px;
+    padding-left: 0;
+}
+#user_command_region {
+    width: 200px;
+}
+#input_quotation{
+    line-height: 1.5rem;
+    width: 100%;
+    border-width: 2px;
+}
+.cx_button {
+    height: 2rem;
+    background-color: white;
+    color: black;
+    border: 2px solid #e7e7e7;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.cx_button:hover {
+    background-color: #e7e7e7;
+}
+
+#title {
+    font-size: 2rem;
+}
+
+#content_left {
+    min-width: 100px;
+    word-break: break-all;
+    margin-right: 215px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+
+.normal_box {
+    border-top: 2px gray solid;
+}
+
+#content_right {
+    width: 200px;
+    overflow-x:hidden;
+    overflow-y: auto;
+    float: right;
+    text-align: left;
+    padding-left: 5px;
+    position:relative;
+}
+
+#comment_show_region {
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border: ridge 1px gray;
+    padding: 0 5px;
+}
+
+.comment_date {
+    width: 100%;
+    text-align: right;
+}
+
+.comment_date p {
+    margin-right: 5px;
+}
+
+.comment_region {
+    text-align: center;
+    margin-top: 20px;
+    margin-right: 7px;
+}
+#comment_content {
+    width: 100%
+}
+.arrow_box {
+    position: relative;
+    background: #f3f5e9;
+    border: 2px solid #b0b086;
+}
+.arrow_box:after, .arrow_box:before {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.arrow_box:after {
+    border-color: rgba(243, 245, 233, 0);
+    border-left-color: #f3f5e9;
+    border-width: 10px;
+    margin-top: -10px;
+}
+.arrow_box:before {
+    border-color: rgba(176, 176, 134, 0);
+    border-left-color: #b0b086;
+    border-width: 13px;
+    margin-top: -13px;
+}
+
+.approve_region {
+    position: relative;
+    text-align: right;
+    margin-top: 10%;
+    overflow: hidden;
+    font-size: 0.8rem;
+    color: #626262;
+}
+
+.approve_region a:link {
+    color: #626262;
+}
+
+.approve_region a:hover {
+    color: black;
+}
+
+.approve_content {
+    width: 60px;
+    float:right;
+    margin-right: 5px;
+    text-align: center;
+}
+
+#load_comment {
+    height: 40px;
+}
+#load_quotation {
+    height: 50px;
+}
+.loading {
+    height: 100%;
+    width: auto;
+    display: none;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+}
+
+#comment_tip {
+    text-align: center;
+}
+
+#comment_submit{
+    padding: 0 32px;
+    font-size: 16px;
+    margin: 4px 2px;
+}
+
+
+
+

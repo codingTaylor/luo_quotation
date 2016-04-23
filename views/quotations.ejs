@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+        var quotations = <%- quotations%>;
+
+    </script>
+    <meta charset="utf-8">
+    <title>老罗语录</title>
+    <meta name="author" content="taylor chen">
+    <meta name="description" content="罗永浩，语录">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+    <script src="http://cdn.bootcss.com/moment.js/2.11.2/moment.min.js"></script>
+    <script src="/js/quotations.js"></script>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link href="http://cdn.bootcss.com/Swiper/3.3.1/css/swiper.min.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/Swiper/3.3.1/js/swiper.min.js"></script>
+</head>
+<body>
+<div id="title">
+    <h3>一个理想主义的可爱的胖子的语录</h3>
+</div>
+<div class="swiper-container" id="img_region">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="/images/1.jpg">
+        </div>
+        <div class="swiper-slide">
+            <img src="/images/2.jpg">
+        </div>
+        <div class="swiper-slide">
+            <img src="/images/3.jpg">
+        </div>
+        <div class="swiper-slide">
+            <img src="/images/4.jpg">
+        </div>
+        <div class="swiper-pagination swiper-pagination-white">
+        </div>
+    </div>
+</div>
+<div ng-app="myApp" ng-controller="getQuotationsAndComments" data-ng-init="init()">
+    <div id="command_region">
+        <table>
+            <tr>
+                <td id="quotation_input_region">
+                    <input type="text" ng-model="inputQuotation" id="input_quotation"/>
+                </td>
+                <td id="user_command_region">
+                    <input type="button" value="搜索语录" class="cx_button" ng-click="searchQuotation()"/>
+                    <input type="button" value="录入语录" class="cx_button" ng-click="submitQuotation()"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="content" class="clear_fix">
+        <div id="content_right">
+            <div id ="comment_tip"><span ng-model="commentTip">{{commentTip}}</span></div>
+            <ul id="comment_show_region" onscroll="onDivScroll()">
+                <li id="load_comment"><img id="comment_loading" class="loading" src="/images/loading.gif"/></li>
+                <li ng-repeat="comment in comments | comment_reverse">
+                    <p>{{comment.content}}</p>
+                    <div class="comment_date">
+                        <p>{{comment.time}}</p>
+                    </div>
+                    <hr>
+                </li>
+            </ul>
+            <div class="comment_region">
+                <textarea type="text" rows = '3' id="comment_content" ng-model="inputComment"></textarea>
+                <input type="button" id="comment_submit" value="提交" class="cx_button" ng-click="submitComment()"/>
+            </div>
+        </div>
+        <div id="content_left">
+            <ul>
+                <li ng-repeat="quotation in quotations" >
+                    <div class="quotation_container" ng-class = "{false: 'normal_box', true: 'arrow_box' }[curQuotationKey===quotation.key]">
+                        <p><a href="#" ng-click="getComments(quotation); moveCommentShowRegion($event)">{{quotation.content}}</a></p>
+                        <div class="approve_region">
+                            <div class="approve_content">
+                                <div><a href="#" ng-click="addWrongCount(quotation)">假的</a>&#40<span >{{quotation.wrong_count}}</span>&#41</div>
+                            </div>
+                            <div class="approve_content">
+                                <div><a href="#" ng-click="addRightCount(quotation)">真的</a>&#40<span>{{quotation.right_count}}</span>&#41</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+                <li id="load_quotation"><img id="quotation_loading" class="loading" src="/images/loading.gif" /></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        speed: 500,
+        pagination: '.swiper-pagination',
+        autoplay : 2000
+    });
+//    window.onload = function(){
+//        console.log('on load');
+//        console.log(document.getElementById('comment_show_region').scrollTop);
+//        document.getElementById('comment_show_region').scrollTop = 20;
+//        console.log(document.getElementById('comment_show_region').scrollTop);
+//    };
+</script>
+</body>
+</html>
